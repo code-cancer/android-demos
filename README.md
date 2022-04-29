@@ -1,7 +1,7 @@
 # Android-Demos
 
 #### 介绍
-Android开发工具包
+Android开发Demos
 
 #### 软件架构
 软件架构说明

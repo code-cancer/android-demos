@@ -1,7 +1,7 @@
 # Android-Demos
 
 #### Description
-Android开发工具包
+Android开发Demos
 
 #### Software Architecture
 Software architecture description
