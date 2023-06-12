@@ -1,4 +1,4 @@
-package com.code.cancer.demos.ui.coordinator.views
+package com.code.cancer.demos.ui.nested.views
 
 import android.content.Context
 import android.util.AttributeSet

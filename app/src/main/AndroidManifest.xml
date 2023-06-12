@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidDemos">
         <activity
-            android:name=".ui.coordinator.CoordinatorActivity"
+            android:name=".ui.nested.NestedActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
