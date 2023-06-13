@@ -3,19 +3,18 @@ package com.code.cancer.demos.ui.nested.dialogs
 import android.graphics.Color
 import com.code.cancer.demos.base.BaseDialog
 import com.code.cancer.demos.base.RecyclerBindingAdapter
-import com.code.cancer.demos.databinding.DialogNormalScrollBinding
+import com.code.cancer.demos.databinding.DialogBehaviorBinding
 import com.code.cancer.demos.databinding.NestedItemViewBinding
 import com.code.cancer.demos.ext.modifyParams
 import java.util.*
 
 /**
  *  @Author: ZhiFu.Zhang
- *  @Date: 2023-06-09
+ *  @Date: 2023-06-12
  *  @What:
  */
-class NormalScrollDialog : BaseDialog<DialogNormalScrollBinding>() {
+class BehaviorDialog : BaseDialog<DialogBehaviorBinding>() {
 
-    private val random = Random()
 
     override fun onCreated(): Unit = binding.run {
         root.post {
@@ -27,6 +26,9 @@ class NormalScrollDialog : BaseDialog<DialogNormalScrollBinding>() {
     }
 
     private inner class ItemAdapter : RecyclerBindingAdapter<NestedItemViewBinding>() {
+
+        private val random = Random()
+
         override fun onBindViewHolder(holder: ViewHolder<NestedItemViewBinding>, position: Int) {
             holder.binding.run {
                 root.setBackgroundColor(getRandomColor())
@@ -36,9 +38,9 @@ class NormalScrollDialog : BaseDialog<DialogNormalScrollBinding>() {
 
         override fun getItemCount(): Int = 50
 
-    }
+        fun getRandomColor(): Int {
+            return Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256))
+        }
 
-    fun getRandomColor(): Int {
-        return Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256))
     }
 }
