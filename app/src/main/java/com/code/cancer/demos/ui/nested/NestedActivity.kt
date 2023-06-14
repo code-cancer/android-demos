@@ -5,6 +5,7 @@ import com.code.cancer.demos.base.CaseItemAdapter
 import com.code.cancer.demos.databinding.ActivityNestedBinding
 import com.code.cancer.demos.ext.showFragment
 import com.code.cancer.demos.ui.nested.dialogs.BehaviorDialog
+import com.code.cancer.demos.ui.nested.dialogs.CustomNestedScrollDialog
 import com.code.cancer.demos.ui.nested.dialogs.NormalScrollDialog
 
 class NestedActivity : BaseActivity<ActivityNestedBinding>() {
@@ -13,12 +14,14 @@ class NestedActivity : BaseActivity<ActivityNestedBinding>() {
         recyclerView.adapter = CaseItemAdapter(
             listOf(
                 "普通嵌套滑动",
-                "自定义Behavior"
+                "自定义Behavior",
+                "自定义NestedScrollView"
             )
         ) {
             when (it) {
                 0 -> showFragment(supportFragmentManager, NormalScrollDialog::class.java)
                 1 -> showFragment(supportFragmentManager, BehaviorDialog::class.java)
+                2 -> showFragment(supportFragmentManager, CustomNestedScrollDialog::class.java)
             }
         }
     }
