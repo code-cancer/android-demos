@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidDemos">
         <activity
+            android:name=".ui.recycler.RecyclerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.nested.NestedActivity"
             android:exported="false" />
         <activity
