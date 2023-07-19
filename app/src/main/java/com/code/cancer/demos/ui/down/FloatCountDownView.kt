@@ -1,13 +1,10 @@
 package com.code.cancer.demos.ui.down
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PixelFormat
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
 import android.view.WindowManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -25,7 +22,6 @@ import java.util.*
  *  @Date: 2023-07-19
  *  @What:
  */
-@SuppressLint("ClickableViewAccessibility")
 class FloatCountDownView(
     context: Context
 ) : ConstraintLayout(context) {
@@ -51,33 +47,6 @@ class FloatCountDownView(
     var isInWindow = false
         private set
 
-    init {
-        binding.tvTime.setOnTouchListener(object : OnTouchListener {
-            private var x = 0
-            private var y = 0
-
-            override fun onTouch(v: View, event: MotionEvent): Boolean {
-                val rawX = event.rawX.toInt()
-                val rawY = event.rawY.toInt()
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        x = rawX
-                        y = rawY
-                    }
-                    MotionEvent.ACTION_MOVE -> {
-                        val movedX = rawX - x
-                        val movedY = rawY - y
-                        x = rawX
-                        y = rawY
-                        params.x += movedX
-                        params.y += movedY
-                        windowManager?.updateViewLayout(this@FloatCountDownView, params)
-                    }
-                }
-                return false
-            }
-        })
-    }
 
     fun show() {
         if (!isInWindow && parent == null) {
@@ -114,10 +83,35 @@ class FloatCountDownView(
         binding.tvTime.text = timeText
     }
 
+    override fun performClick(): Boolean {
+        return super.performClick()
+    }
+
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         stopCountDownJob()
     }
 
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        val rawX = event.rawX
+        val rawY = event.rawY
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                mx = rawX
+                my = rawY
+            }
+            MotionEvent.ACTION_MOVE -> {
+                val movedX = event.rawX - mx
+                val movedY = event.rawY - my
+                mx = rawX
+                my = rawY
+                params.x += movedX.toInt()
+                params.y += movedY.toInt()
+                windowManager?.updateViewLayout(this, params)
+            }
+            MotionEvent.ACTION_UP -> performClick()
+        }
+        return false
+    }
 
 }
