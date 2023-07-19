@@ -22,4 +22,16 @@ object Devices {
     }
 
 
+    fun getStatusBarHeight(): Int {
+        return try {
+            val clazz = Class.forName("com.android.internal.R${'$'}dimen")
+            val instance = clazz.newInstance()
+            val field = clazz.getField("status_bar_height")
+            val h = field.get(instance)?.toString()?.toInt() ?: 0
+            App.context.resources.getDimensionPixelSize(h)
+        } catch (e: Exception) {
+            0
+        }
+    }
+
 }
