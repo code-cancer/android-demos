@@ -2,4 +2,5 @@
     <string name="app_name">Android-Demos</string>
     <string name="add">添加</string>
     <string name="remove">删除</string>
+    <string name="get_system_params">获取参数</string>
 </resources>
